@@ -97,7 +97,7 @@ static NSDateFormatter* durationFormatter = nil;
   NSTimeInterval d = -1;
   
   if (self.itunesDuration) {
-    NSArray* dParts = [self.itunesDuration componentsSeparatedByString:@":"];
+    NSArray<NSString *> * dParts = [self.itunesDuration componentsSeparatedByString:@":"];
     
     switch (dParts.count) {
       case 1:
@@ -115,8 +115,11 @@ static NSDateFormatter* durationFormatter = nil;
     
     NSString* stringToParse = [@"1970 +0000 " stringByAppendingFormat:@"%@", self.itunesDuration];
     NSDate* _date = [durationFormatter dateFromString:stringToParse];
-    
-    d = [_date timeIntervalSince1970];
+      if (_date == nil && dParts.count == 2) {
+          d = [dParts[0] integerValue]*60 + dParts[1].integerValue;
+      } else {
+          d = [_date timeIntervalSince1970];
+      }
   } else if (self.enclosure.length) {
     int audioBytes = self.enclosure.length.floatValue;
     
