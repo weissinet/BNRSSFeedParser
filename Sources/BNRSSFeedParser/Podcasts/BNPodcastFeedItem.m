@@ -130,5 +130,10 @@ static NSDateFormatter* durationFormatter = nil;
   
   return d;
 }
+-(NSURL *)imageUrl{
+    NSString *path = _collection[@"itunes:image"][@"href"];
+    NSURL *url = [NSURL URLWithString:path];
+    return url;
+}
 
 @end

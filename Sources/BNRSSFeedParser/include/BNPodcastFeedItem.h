@@ -38,4 +38,5 @@
 @property (nonatomic, strong, readonly) NSString* summary;
 @property (nonatomic, readonly) NSTimeInterval duration;
 
+-(NSURL *)imageUrl;
 @end
