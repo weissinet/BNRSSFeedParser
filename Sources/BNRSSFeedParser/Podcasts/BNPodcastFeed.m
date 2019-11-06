@@ -51,6 +51,14 @@
   return _items;
 }
 
+-(NSURL *)imageUrl{
+    NSString *path = self.channel[@"image"][@"url"];
+    if (path == nil){
+        path = self.channel[@"itunes:image"][@"href"];
+    }
+    NSURL *url = [NSURL URLWithString:path];
+    return url;
+}
 #pragma mark - iTunes extensions
 
 - (NSString*)itunesAuthor {

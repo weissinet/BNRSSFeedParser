@@ -36,5 +36,6 @@
 @property (nonatomic, strong, readonly) NSString* author;
 @property (nonatomic, strong, readonly) NSString* subtitle;
 @property (nonatomic, strong, readonly) NSString* summary;
+-(NSURL *)imageUrl;
 
 @end
