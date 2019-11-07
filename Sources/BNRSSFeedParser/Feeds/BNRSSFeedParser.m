@@ -99,7 +99,17 @@ static NSDateFormatter* dateFormatterAlt = nil;
         failure(self.operationResponse, error);
       }
     } else {
-      if (failure) {
+         if (data) {
+            self.successBlock = success;
+            self.failureBlock = failure;
+            
+            //          NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+            //          NSLog(@"%@", string);
+            
+            NSXMLParser* XMLParser = [[NSXMLParser alloc] initWithData:data];
+            XMLParser.delegate = self;
+            [XMLParser parse];
+         } else       if (failure) {
         failure(nil, error);
       }
     }
